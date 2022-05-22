@@ -1,0 +1,119 @@
+.sec .hr {
+    margin-top: 10px;
+    color: #6bb8e48d;
+}
+
+.experiences {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* background: #1f1e39; */
+}
+
+.experiences::-webkit-scrollbar {
+    display: none;
+  }
+
+.experiences .experience {
+    /* background: #2b2b6a; */
+    /* margin-left: -10px; */
+
+    /* border-right: 1px solid #ccc; */
+    display: block;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 350px;
+    margin: 10px;
+    /* border: 1px solid #1f1e39; */
+    padding: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px 0 #01579b33;
+    /* box-shadow: 0 0 128px #0000001a,
+                       0 32px 64px -48px #00000080;*/
+    transform: scale(0.98);
+}
+
+.experiences .experience .experience-pic {
+    max-width: 280px;
+    min-width: 280px;
+    max-height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.experiences .experience:first-child {
+    margin-left: -10px;
+}
+
+.experiences .experience:last-child {
+    margin-right: -9px;
+}
+
+.experiences .experience:hover {
+    transform: scale(1.02);
+    transition: 0.4s;
+}
+
+.experiences .texts {
+    /* color: blue; */
+    /* overflow-x: hidden; */
+}
+
+.icon{
+    width: 100px;
+}
+
+.exp-wrapper {
+    margin-top: -8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.swipe-right {
+    background: #6bb8e441;
+    color: #6bb8e48d;
+    font-weight: 800;
+    border: none;
+    border-radius: 2px;
+    /* display: block; */
+    font-size: 25px;
+    padding: 2px;
+    text-align: center;
+    margin-top: 30px;
+    max-height: 80px;
+    margin-right: -25px;
+    width: 20px;
+    /* height: 300px; */
+    box-shadow: 0 2px 6px 0 #01579b33;
+    position: relative;
+}
+.swipe-left {
+    background: #6bb8e441;
+    color: #6bb8e48d;
+    font-weight: 800;
+    border: none;
+    border-radius: 2px;
+    /* display: none; */
+    font-size: 25px;
+    padding: 2px;
+    text-align: center;
+    margin-left: -25px;
+    /* margin-top: 90px; */
+    margin-top: 30px;
+    max-height: 80px;
+    width: 20px;
+    /* height: 300px; */
+    /* display: none; */
+    box-shadow: 0 2px 6px 0 #01579b33;
+}
+
+.exp-wrapper button:hover {
+    background: #6bb8e467;
+}
+
+.exp-wrapper button:active {
+    transform: scale(0.98);
+}

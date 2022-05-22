@@ -1,0 +1,51 @@
+.jumbotron {
+    display: block;
+    justify-content: center;
+}
+
+.pro-photo {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+}
+
+@media (min-width: 350px) {
+    .details {
+        display: flex;
+        margin-top: 10px;
+        justify-content: left;
+        align-items: center;
+    }
+    .about {
+        align-items: center;
+        padding-left: 12px;
+    }
+}
+
+.degree {
+    margin:-10px 0 0 0;
+    font-size: 12px;
+    color: #2a2a2a;
+}
+
+.school {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.school a {
+    color: #00000099;
+    text-decoration:none;
+}
+
+.school a:hover {
+    color: #0a66c2;
+    text-decoration: underline;
+}
+
+.location {
+    font-size: 10px;
+    margin-top: 0;
+    color: #00000099;
+    text-decoration:none;
+}

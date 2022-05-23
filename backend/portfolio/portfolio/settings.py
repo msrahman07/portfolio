@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'contactme.apps.ContactmeConfig',
     'experiences.apps.ExperiencesConfig',
     'skills.apps.SkillsConfig',
     'projects.apps.ProjectsConfig',

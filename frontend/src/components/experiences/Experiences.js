@@ -7,10 +7,22 @@ import $ from "jquery";
 import axios from "axios";
 
 export default function Experiences() {
+  // const []
+  const [experiences, setExperiences] = useState([]);
   const scrl = useRef();
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
   const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
   const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
+
+  useEffect(()=>{
+    axios.get('/experiences')
+    .then((res) => {
+      setExperiences([...res.data['Experiences']])
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  },[])
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -52,7 +64,7 @@ export default function Experiences() {
   return (
     <div>
       <div className="sec container">
-        <h4 className="display-7">Projects</h4>
+        <h4 className="display-7">Experiences</h4>
         <hr className="hr" />
         <div className="exp-wrapper">
           {scrollX !== 0 && (

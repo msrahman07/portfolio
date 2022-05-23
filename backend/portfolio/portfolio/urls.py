@@ -23,5 +23,6 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('skills/', include('skills.urls')),
     path('experiences/', include('experiences.urls')),
+    path('contactme/', include('contactme.urls')),
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

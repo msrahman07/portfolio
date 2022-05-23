@@ -18,6 +18,7 @@ const About = () => {
           I am a software developer experienced in various programming languages
           and frameworks. Welcome to my portfolio.
         </p> */}
+        <div className="hello" >Hello</div>
       </div>
     </section>
   );

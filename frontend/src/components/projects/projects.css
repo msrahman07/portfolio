@@ -116,3 +116,8 @@
 .proj-wrapper button:active {
     transform: scale(0.98);
 }
+
+.spec-proj {
+    box-shadow: 0 2px 6px 0 #01579b33;
+    z-index: 2;
+}

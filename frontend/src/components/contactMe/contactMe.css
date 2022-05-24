@@ -47,3 +47,14 @@
     max-height: 80px;
 }
 
+.sec #contactme-social {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.sec #contactme-social a {
+    color: #000000;
+    margin: 0 10px 0 10px;
+}

@@ -3,6 +3,8 @@ import "./projects.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faarrowright } from "@fortawesome/free-solid-svg-icons";
 // import imges from "./img.jpg";
+import Skills from "../skills/Skills.js";
+import SpecificProject from "./SpecificProject.js";
 import $ from "jquery";
 import axios from "axios";
 console.log("Hello World");
@@ -12,6 +14,7 @@ const Projects = () => {
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
   const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
   const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
+  const [openModal, setModal] = useState(false);
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -68,12 +71,24 @@ const Projects = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  const sliceText = (txt) => {
+    if (txt.length > 200) {
+      return txt.slice(0, 200) + ".....";
+    } else {
+      return txt;
+    }
+  };
 
+  const popModal = () => {
+    setModal(true);
+    alert("Hello");
+  }
   // console.log
   return (
     <div>
+      <SpecificProject modal={openModal}/>
       <div className="sec container">
-        <h4 className="display-7">Projects</h4>
+      <h4 className="display-7">Projects</h4>
         <hr className="hr" />
         <div className="proj-wrapper">
           {scrollX !== 0 && (
@@ -89,10 +104,12 @@ const Projects = () => {
           >
             {projects.length !== 0 &&
               projects.map((project) => (
-                <div key= {project['id']} className="project">
-                  <img className="project-pic" src={project["image"]} />
-                  <h5>{project["project_name"]}</h5>
-                  <div className="texts">{project["details"]}</div>
+                <div onClick={popModal} className="project">
+                  <div key={project["id"]}>
+                    <img className="project-pic" src={project["image"]} />
+                    <h5>{project["project_name"]}</h5>
+                    <div className="texts">{sliceText(project["details"])}</div>
+                  </div>
                 </div>
               ))}
           </div>

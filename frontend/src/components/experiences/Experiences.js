@@ -14,15 +14,16 @@ export default function Experiences() {
   const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
   const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
 
-  useEffect(()=>{
-    axios.get('/experiences')
-    .then((res) => {
-      setExperiences([...res.data['Experiences']])
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  },[])
+  useEffect(() => {
+    axios
+      .get("/experiences")
+      .then((res) => {
+        setExperiences([...res.data["Experiences"]]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -78,6 +79,13 @@ export default function Experiences() {
             ref={scrl}
             onScroll={scrollCheck}
           >
+            {experiences.length !== 0 &&
+              experiences.map((experience) => (
+                <div key={experience["id"]} className="experience">
+                  <h5>{experience["position"]}</h5>
+                  <div className="texts">{experience["tasks"]}</div>
+                </div>
+              ))}
             <div className="experience">
               <h5>New Experiences</h5>
               <div className="texts">

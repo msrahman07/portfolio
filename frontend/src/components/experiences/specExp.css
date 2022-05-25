@@ -1,22 +1,18 @@
-.proj-sec {
+.exp-sec {
     margin: auto;
     margin-top: 20vh;
     margin-bottom: 20vh;
     padding: 25px;
-    /* background: #ffffff; */
     background: #f7fcff;
     border-radius: 10px;
     box-shadow: 0 2px 6px 0 #01579b33;
     max-width: 500px;
     overflow-wrap: break-word;
-    /* margin-right: 50%; */
 }
 
-.proj-header {
-    margin-top: -6px;
+.expHeader{
     display: flex;
     justify-content: space-between;
-    
 }
 
 .btn {
@@ -31,17 +27,17 @@
 }
 
 
-.spec-proj {
+.spec-exp {
     box-shadow: 0 2px 6px 0 #01579b33;
     z-index: 2;
 }
 
-.proj-tech-stack{
+.exp-tech-stack{
     font-size: 15px;
     color: #4f4e4e;
 }
 
-.proj-content {
+.exp-content {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -50,7 +46,7 @@
 
 }
 
-.proj-content ul {
+.exp-content ul {
     overflow-wrap: break-word;
     margin-right: 0;
     word-wrap: break-word;

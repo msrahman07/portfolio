@@ -8,6 +8,6 @@ from .models import Projects
 
 def index(request):
     serializer_class = ProjectsSerializer
-    projects = Projects.objects.values()
+    projects = Projects.objects.values().order_by('number')
     # print(projects)
     return JsonResponse({"Projects": list(projects)})

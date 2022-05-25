@@ -7,14 +7,16 @@ import Skills from "../skills/Skills.js";
 import SpecificProject from "./SpecificProject.js";
 import $ from "jquery";
 import axios from "axios";
-console.log("Hello World");
-
-const Projects = () => {
+import Modal from "@mui/material/Modal";
+import "./specProj.css";
+import ProjectModal from "../../context/proj-modal-ctx.js";
+const Projects = React.memo(() => {
   const scrl = useRef();
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
   const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
   const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
-  const [openModal, setModal] = useState(false);
+  const [modal, setModal] = useState(false); // For detecting end of scrolling
+  const [currentProject, setCurrentProject] = useState({}); // For detecting end of scrolling
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -72,8 +74,8 @@ const Projects = () => {
     return <div>Loading...</div>;
   }
   const sliceText = (txt) => {
-    if (txt.length > 200) {
-      return txt.slice(0, 200) + ".....";
+    if (txt.length > 150) {
+      return txt.slice(0, 150) + ".....";
     } else {
       return txt;
     }
@@ -81,47 +83,89 @@ const Projects = () => {
 
   const popModal = () => {
     setModal(true);
-    alert("Hello");
-  }
+  };
+  const closeModal = () => {
+    setModal(false);
+  };
+  const loadProjects = (txt) => {
+    console.log(txt);
+  };
+  const onclickEvent = (proj) => {
+    popModal();
+    setCurrentProject(proj);
+  };
   // console.log
   return (
-    <div>
-      <SpecificProject modal={openModal}/>
-      <div className="sec container">
-      <h4 className="display-7">Projects</h4>
-        <hr className="hr" />
-        <div className="proj-wrapper">
-          {scrollX !== 0 && (
-            <button className="swipe-left" onClick={() => slide(-320)}>
-              <i className="fa fa-angle-left"></i>
-            </button>
-          )}
-          <div
-            id="projects"
-            className="projects container-fluid"
-            ref={scrl}
-            onScroll={scrollCheck}
-          >
-            {projects.length !== 0 &&
-              projects.map((project) => (
-                <div onClick={popModal} className="project">
-                  <div key={project["id"]}>
-                    <img className="project-pic" src={project["image"]} />
-                    <h5>{project["project_name"]}</h5>
-                    <div className="texts">{sliceText(project["details"])}</div>
+    <ProjectModal.Provider
+      value={{
+        modalOpen: modal,
+        modalClose: closeModal,
+      }}
+    >
+      <div>
+        {modal == true && (
+          <SpecificProject
+            currProj_name={currentProject["project_name"]}
+            currProj_tectstack={currentProject["tech_stack"]}
+            currProj_tasks={currentProject["tasks"]}
+          />
+        )}
+        {/* cannot pass object, break it down */}
+        <div className="sec container">
+          <h4 className="display-7">Projects</h4>
+          <hr className="hr" />
+          <div className="proj-wrapper">
+            {scrollX !== 0 && (
+              <button className="swipe-left" onClick={() => slide(-320)}>
+                <i className="fa fa-angle-left"></i>
+              </button>
+            )}
+            <div
+              id="projects"
+              className="projects container-fluid"
+              ref={scrl}
+              onScroll={scrollCheck}
+            >
+              {projects.length !== 0 &&
+                projects.map((project) => (
+                  <div
+                    onClick={() => onclickEvent(project)}
+                    className="project"
+                  >
+                    <div key={project["id"]}>
+                      <img className="project-pic" src={project["image"]} />
+                      <h5>{project["project_name"]}</h5>
+                      {project["github_url"] !== "" && (
+                        <span className="project-links">
+                          <a href={project["github_url"]} target="_blank">
+                            github
+                          </a>
+                        </span>
+                      )}
+                      {project["demo_link"] !== "" && (
+                        <span>
+                          <a href={project["demo_link"]} target="_blank">
+                            demo
+                          </a>
+                        </span>
+                      )}
+                      <div className="texts">
+                        {sliceText(project["details"])}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+            </div>
+            {!scrolEnd && (
+              <button className="swipe-right" onClick={() => slide(320)}>
+                <i className="fa fa-angle-right"></i>{" "}
+              </button>
+            )}
           </div>
-          {!scrolEnd && (
-            <button className="swipe-right" onClick={() => slide(320)}>
-              <i className="fa fa-angle-right"></i>{" "}
-            </button>
-          )}
         </div>
       </div>
-    </div>
+    </ProjectModal.Provider>
   );
-};
+});
 
 export default Projects;

@@ -23,7 +23,7 @@
     display: block;
     max-width: 300px;
     min-width: 300px;
-    max-height: 350px;
+    max-height: 190px;
     margin: 10px;
     /* border: 1px solid #1f1e39; */
     padding: 10px;
@@ -33,6 +33,9 @@
     /* box-shadow: 0 0 128px #0000001a,
                        0 32px 64px -48px #00000080;*/
     transform: scale(0.98);
+    overflow-wrap: break-word;
+    word-wrap: break-all;
+    cursor: pointer;
 }
 
 .experiences .experience .experience-pic {
@@ -116,4 +119,18 @@
 
 .exp-wrapper button:active {
     transform: scale(0.98);
+}
+
+.exp-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.company {
+    margin-top: -10px;
+    font-size: 14px;
+    color: #5b5858;
+}
+.date {
+    margin-top: -20px;
 }

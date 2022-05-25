@@ -5,7 +5,7 @@ from django.core import serializers
 from .models import Experience, Task
 
 def index(request):
-    experiences = Experience.objects.values()
+    experiences = Experience.objects.values().order_by('number')
     return JsonResponse({"Experiences": list(experiences)})
 
 def get_tasks(request, exp_id):

@@ -10,6 +10,8 @@ import axios from "axios";
 import Modal from "@mui/material/Modal";
 import "./specProj.css";
 import ProjectModal from "../../context/proj-modal-ctx.js";
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+import ProjectPage from "./ProjectPage";
 const Projects = React.memo(() => {
   const scrl = useRef();
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
@@ -17,6 +19,7 @@ const Projects = React.memo(() => {
   const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
   const [modal, setModal] = useState(false); // For detecting end of scrolling
   const [currentProject, setCurrentProject] = useState({}); // For detecting end of scrolling
+  const [projects, setProjects] = useState([]);
 
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -56,7 +59,6 @@ const Projects = React.memo(() => {
     return () => {};
   }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
 
-  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     axios
@@ -94,7 +96,7 @@ const Projects = React.memo(() => {
     popModal();
     setCurrentProject(proj);
   };
-  // console.log
+  console.log(projects);
   return (
     <ProjectModal.Provider
       value={{
@@ -112,7 +114,13 @@ const Projects = React.memo(() => {
         )}
         {/* cannot pass object, break it down */}
         <div className="sec container">
-          <h4 className="display-7">Projects</h4>
+          <header className="proj-title">
+            <h4 id="projects" className="display-7">
+              Projects
+            </h4>
+            <p className="proj-link"><Link to="/projects">See all</Link></p>
+          </header>
+
           <hr className="hr" />
           <div className="proj-wrapper">
             {scrollX !== 0 && (
@@ -121,7 +129,6 @@ const Projects = React.memo(() => {
               </button>
             )}
             <div
-              id="projects"
               className="projects container-fluid"
               ref={scrl}
               onScroll={scrollCheck}
@@ -129,10 +136,11 @@ const Projects = React.memo(() => {
               {projects.length !== 0 &&
                 projects.map((project) => (
                   <div
+                    key={project["id"]}
                     onClick={() => onclickEvent(project)}
                     className="project"
                   >
-                    <div key={project["id"]}>
+                    <div>
                       <img className="project-pic" src={project["image"]} />
                       <h5>{project["project_name"]}</h5>
                       {project["github_url"] !== "" && (

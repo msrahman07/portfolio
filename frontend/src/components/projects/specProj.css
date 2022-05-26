@@ -7,7 +7,7 @@
     background: #f7fcff;
     border-radius: 10px;
     box-shadow: 0 2px 6px 0 #01579b33;
-    max-width: 500px;
+    max-width: auto;
     overflow-wrap: break-word;
     /* margin-right: 50%; */
 }

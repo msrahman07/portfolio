@@ -11,6 +11,8 @@ class Experience(models.Model):
     tasks = models.TextField(max_length=5000, blank=True)
     # tasks = SimpleArrayField(models.CharField(max_length=200),delimiter='|')
     # tasks = ArrayField(models.CharField(max_length=200), delimiter='|', default=list)
+    def __str__(self):
+        return self.position
 
 class Task(models.Model):
     task = models.TextField(max_length=1000)

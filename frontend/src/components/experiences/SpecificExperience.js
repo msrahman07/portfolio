@@ -21,7 +21,7 @@ const SpecificExperience = (props) => {
     <div>
       {console.log(tasks)}
       <Modal
-        sx={{ opacity: 1 }}
+        sx={{ opacity: 1, margin: 'auto', maxWidth:'500px' }}
         open={ctx.modalOpen}
         onClose={ctx.modalClose}
         aria-labelledby="modal-modal-title"

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { useContext } from "react";
 import Modal from "@mui/material/Modal";
 import "./specProj.css";
+import { useContext } from "react";
 import ProjectModal from "../../context/proj-modal-ctx.js";
 
 const SpecificProject = (props) => {
@@ -20,7 +20,7 @@ const SpecificProject = (props) => {
     <div>
       {console.log(tasks)}
       <Modal
-        sx={{ opacity: 1 }}
+        sx={{ opacity: 1, margin: 'auto', maxWidth:'500px'}}
         open={ctx.modalOpen}
         onClose={ctx.modalClose}
         aria-labelledby="modal-modal-title"

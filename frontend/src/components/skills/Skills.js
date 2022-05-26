@@ -26,7 +26,7 @@ const Skills = () => {
   return (
     <div>
       <div className="sec container">
-        <h4 className="display-7">Skills</h4>
+        <h4 id="skills" className="display-7">Skills</h4>
         <hr className="hr" />
         <div className="row skills">
           {skills.length !== 0 &&

@@ -3,7 +3,7 @@ import about from "./about.css";
 import propic from "./propic.jpg";
 const About = () => {
   return (
-    <section className="sec container">
+    <section id="about" className="sec container">
       <div className="jumbotron">
         <div className="details">
           <img className="img-fluid pro-photo" src={propic} />

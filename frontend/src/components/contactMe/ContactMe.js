@@ -14,6 +14,9 @@ export default function ContactMe() {
   const [nameValue, setNameValue] = useState("");
   const [btnDisable, setBtnDisable] = useState(true);
 
+  useEffect(() => {
+    inputMessage.current.value = "Let's have coffee!";
+  });
   const checkEmail = (e) => {
     setEmailValue(e.target.value);
     // console.log(emailValue);
@@ -23,6 +26,8 @@ export default function ContactMe() {
     console.log(successMsg);
   };
   useEffect(() => {
+    successMsg.current.hidden = true;
+
     if (validator.isEmail(emailValue) && nameValue !== "") {
       setBtnDisable(false);
       //   console.log(inputEmail);
@@ -72,7 +77,7 @@ export default function ContactMe() {
         inputName.current.value = "";
         inputEmail.current.value = "";
         inputCompany.current.value = "";
-        inputMessage.current.value = "";
+        inputMessage.current.value = "Let's have coffee!";
       })
       .catch(function (error) {
         console.log(error);
@@ -80,10 +85,15 @@ export default function ContactMe() {
   };
   return (
     <div className="sec container">
-      <h4 className="display-7">Contact Me</h4>
+      <h4 id="contact" className="display-7">Contact me</h4>
       <hr className="hr" />
       <form className="form" onSubmit={submitForm}>
-        <div ref= {successMsg} className="alert alert-success" role="alert" hidden={true}>
+        <div
+          ref={successMsg}
+          className="alert alert-success"
+          role="alert"
+          hidden={true}
+        >
           Thank you for contacting me!
         </div>
         <div className="form-group">
@@ -96,7 +106,7 @@ export default function ContactMe() {
             type="text"
             className="form-control"
             id="inputName"
-            placeholder="Enter full name"
+            placeholder="Enter name"
           />
         </div>
         <div className="form-group">
@@ -131,6 +141,7 @@ export default function ContactMe() {
             id="inputMessage"
             rows="4"
             placeholder="Enter your message/comment"
+            // value={inputMessage.current.value}
           ></textarea>
         </div>
         <button
@@ -142,11 +153,29 @@ export default function ContactMe() {
           Submit
         </button>
       </form>
-      <div id="contactme-social" >
-          <a href="https://github.com/msrahman07" className="github" target="_blank"><i className="fa-brands fa-github"></i></a>
-          <a href="https://www.facebook.com/mdshahriar.rahmansakib/" className="facebook" target="_blank"><i className="fa-brands fa-facebook"></i></a>
-          <a href="https://www.linkedin.com/in/msrahman07/" className="linkedin" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
-        </div>
+      <div id="contactme-social">
+        <a
+          href="https://github.com/msrahman07"
+          className="github"
+          target="_blank"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/mdshahriar.rahmansakib/"
+          className="facebook"
+          target="_blank"
+        >
+          <i className="fa-brands fa-facebook"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/msrahman07/"
+          className="linkedin"
+          target="_blank"
+        >
+          <i className="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
     </div>
   );
 }

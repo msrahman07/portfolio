@@ -1,0 +1,20 @@
+.navbar {
+    background: #dae4eb;
+    box-shadow: 0 2px 6px 0 #01579b33;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+#navbarNav {
+    margin-left: 6px;
+    margin-right: 6px;
+    /* background: #566b77; */
+}
+
+.nav-link {
+    cursor: pointer;
+    text-decoration: none;
+}

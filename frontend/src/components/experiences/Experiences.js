@@ -8,6 +8,7 @@ import $ from "jquery";
 import axios from "axios";
 import ExperienceModal from "../../context/exp-modal-ctx.js";
 import SpecificExperience from "./SpecificExperience.js";
+import {Link} from "react-router-dom";
 export default function Experiences() {
   // const []
   const [experiences, setExperiences] = useState([]);
@@ -84,7 +85,7 @@ export default function Experiences() {
   const onClickHandler = (exp) => {
     popModal();
     setCurrentExp(exp);
-  }
+  };
 
   return (
     <ExperienceModal.Provider
@@ -93,48 +94,57 @@ export default function Experiences() {
         modalClose: closeModal,
       }}
     >
-      <div>
-        <SpecificExperience 
-          currExp_postion={currentExp['position']}
-          currExp_company={currentExp['company']}
-          currExp_tasks={currentExp['tasks']}
+      {modal == true && (
+        <SpecificExperience
+          currExp_postion={currentExp["position"]}
+          currExp_company={currentExp["company"]}
+          currExp_tasks={currentExp["tasks"]}
         />
-        <div className="sec container">
-          <h4 className="display-7">Experiences</h4>
-          <hr className="hr" />
-          <div className="exp-wrapper">
-            {scrollX !== 0 && (
-              <button className="swipe-left" onClick={() => slide(-320)}>
-                <i className="fa fa-angle-left"></i>
-              </button>
-            )}
-            <div
-              id="experiences"
-              className="experiences container-fluid"
-              ref={scrl}
-              onScroll={scrollCheck}
-            >
-              {experiences.length !== 0 &&
-                experiences.map((experience) => (
-                  <div
-                    onClick={()=>onClickHandler(experience)}
-                    key={experience["id"]}
-                    className="experience"
-                  >
-                    <header className="exp-header">
-                      <h5>{experience["position"]}</h5>
-                      <div className="company">
-                        <p>{experience["company"]}</p>
-                        <p className="date">{experience["date_range"]}</p>
-                      </div>
-                    </header>
-                    <div className="texts">
-                      {sliceText(experience["description"])}
-                    </div>
-                  </div>
-                ))}
+      )}
+      <div className="sec container">
+        <header className="proj-title">
+          <h4 id="experiences" className="display-7">
+            Experiences
+          </h4>
+          <p className="exp-link">
+            <Link to="/experiences">See all</Link>
+          </p>
+        </header>
 
-              {/* {projects.length !== 0 &&
+        <hr className="hr" />
+        <div className="exp-wrapper">
+          {scrollX !== 0 && (
+            <button className="swipe-left" onClick={() => slide(-320)}>
+              <i className="fa fa-angle-left"></i>
+            </button>
+          )}
+          <div
+            id="experiences"
+            className="experiences container-fluid"
+            ref={scrl}
+            onScroll={scrollCheck}
+          >
+            {experiences.length !== 0 &&
+              experiences.map((experience) => (
+                <div
+                  onClick={() => onClickHandler(experience)}
+                  key={experience["id"]}
+                  className="experience"
+                >
+                  <header className="exp-header">
+                    <h5>{experience["position"]}</h5>
+                    <div className="company">
+                      <p>{experience["company"]}</p>
+                      {experience["date_range"] !== "" && <p className="date">{experience["date_range"]}</p>}
+                    </div>
+                  </header>
+                  <div className="texts">
+                    {sliceText(experience["description"])}
+                  </div>
+                </div>
+              ))}
+
+            {/* {projects.length !== 0 &&
               projects.map((project) => (
                 <div key={project["id"]} className="project">
                   <img className="project-pic" src={project["image"]} />
@@ -142,13 +152,12 @@ export default function Experiences() {
                   <div className="texts">{project["details"]}</div>
                 </div>
               ))} */}
-            </div>
-            {!scrolEnd && (
-              <button className="swipe-right" onClick={() => slide(320)}>
-                <i className="fa fa-angle-right"></i>{" "}
-              </button>
-            )}
           </div>
+          {!scrolEnd && (
+            <button className="swipe-right" onClick={() => slide(320)}>
+              <i className="fa fa-angle-right"></i>{" "}
+            </button>
+          )}
         </div>
       </div>
     </ExperienceModal.Provider>

@@ -22,7 +22,7 @@ export default function Experiences() {
     axios
       .get("/experiences")
       .then((res) => {
-        setExperiences([...res.data["Experiences"]]);
+        setExperiences([...res.data]);
       })
       .catch((err) => {
         console.log(err);

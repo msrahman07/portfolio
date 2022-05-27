@@ -12,6 +12,8 @@ import "./specProj.css";
 import ProjectModal from "../../context/proj-modal-ctx.js";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
+import {motion } from "framer-motion"
+
 const Projects = React.memo(() => {
   const scrl = useRef();
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
@@ -64,7 +66,7 @@ const Projects = React.memo(() => {
     axios
       .get("projects/")
       .then((res) => {
-        setProjects((prev) => [...res.data["Projects"]]);
+        setProjects((prev) => [...res.data]);
         // console.log(projects[0]);
         setisLoading(false);
       })

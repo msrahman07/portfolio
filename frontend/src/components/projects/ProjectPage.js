@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./projects.css";
 import $ from "jquery";
+import OtherNavbar from "../navbar/OtherNav";
 
 const ProjectPage = (props) => {
   const [projects, setProjects] = useState([]);
@@ -13,7 +14,7 @@ const ProjectPage = (props) => {
     axios
       .get("")
       .then((res) => {
-        setProjects((prev) => [...res.data["Projects"]]);
+        setProjects((prev) => [...res.data]);
         // console.log(projects[0]);
         setisLoading(false);
       })
@@ -25,9 +26,17 @@ const ProjectPage = (props) => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="sec container">
+    <div className="sec container" style={{ marginTop: "60px" }}>
+      <OtherNavbar />
       <header id="allProjects">
-        <button className="btn goback" onClick={() => {navigate("/")}}><i className="fa fa-angle-left"></i> Go back</button>
+        <button
+          className="btn goback"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <i className="fa fa-angle-left"></i> Go back
+        </button>
         <h4>Projects</h4>
       </header>
       <hr className="hr" />
@@ -52,10 +61,11 @@ const ProjectPage = (props) => {
                 </span>
               )}
               <div className="texts">{project["details"]}</div>
-              <ul >
-                {project["tasks"] !== "" && project["tasks"].split("\n").map((task) => (
-                  <li className="project-task">{task}</li>
-                ))}
+              <ul>
+                {project["tasks"] !== "" &&
+                  project["tasks"]
+                    .split("\n")
+                    .map((task) => <li className="project-task">{task}</li>)}
               </ul>
             </div>
           ))}

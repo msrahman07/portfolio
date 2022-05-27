@@ -15,7 +15,7 @@ const Skills = () => {
     axios
       .get("/skills/")
       .then((res) => {
-        setSkills(() => [...res.data["Skills"]]);
+        setSkills(() => [...res.data]);
         setLoading(false);
       })
       .catch((err) => {

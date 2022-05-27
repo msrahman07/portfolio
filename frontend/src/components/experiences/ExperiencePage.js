@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./experiences.css";
 import $ from "jquery";
+import OtherNavbar from "../navbar/OtherNav";
 
 const ExperiencePage = (props) => {
   const [experiences, setExperiences] = useState([]);
@@ -13,7 +14,7 @@ const ExperiencePage = (props) => {
     axios
       .get("")
       .then((res) => {
-        setExperiences((prev) => [...res.data["Experiences"]]);
+        setExperiences((prev) => [...res.data]);
         // console.log(projects[0]);
         setisLoading(false);
       })
@@ -25,7 +26,8 @@ const ExperiencePage = (props) => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="sec container">
+    <div className="sec container" style={{marginTop: '60px'}}>
+      <OtherNavbar />
       <header id="allExperiences">
         <button
           className="btn goback"

@@ -5,7 +5,7 @@ import Skills from "./components/skills/Skills.js";
 import Experiences from "./components/experiences/Experiences.js";
 import ContactMe from "./components/contactMe/ContactMe.js";
 import Navbar from "./components/navbar/Nav.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import ProjectPage from "./components/projects/ProjectPage";
 import Home from "./components/home/Home.js";
 import ExperiencePage from "./components/experiences/ExperiencePage.js";

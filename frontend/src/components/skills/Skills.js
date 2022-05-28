@@ -31,8 +31,9 @@ const Skills = () => {
         <div className="row skills">
           {skills.length !== 0 &&
             skills.map((skill) => (
-              <div key={skill['id']} className="col-sm skill">
-                <img className="skill-img" src={skill['logo']} alt={skill['skill_name']} />
+              <div key={skill['id']} className="col skill">
+                {/* <img className="skill-img" src={skill['logo']} alt={skill['skill_name']} /> */}
+                {skill['skill_name']}
               </div>
             ))}
         </div>

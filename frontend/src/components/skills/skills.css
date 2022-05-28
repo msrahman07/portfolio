@@ -17,18 +17,24 @@
   } */
 
 .skills .skill {
-    max-width: 80px;
+    max-width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     /* width: 50px; */
-    /* margin: auto; */
+    margin: auto;
+    /* width: auto; */
+    min-height: 40px;
     max-height: 80px;
     margin-left: 15px;
+    margin-top: 10px;
     /* margin-right: 10px; */
-    border-radius: 25px;
+    border-radius: 10px;
     transform: scale(1);
     background-color: transparent;
+    background: #dae4eb;
+    text-align: center;
+    /* padding: 2px; */
 }
 
 .skills .skill:hover {
@@ -45,4 +51,8 @@
     max-height: 100px;
     /* min-width: 100px; */
     /* background-color: transparent; */
+}
+
+.col {
+    margin-top: 100px;
 }

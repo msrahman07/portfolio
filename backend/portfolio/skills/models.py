@@ -4,7 +4,7 @@ from django.db import models
 
 class Skill(models.Model):
     number = models.IntegerField(default=1)
-    logo = models.ImageField(upload_to ='static/logos/')
+    # logo = models.ImageField(upload_to ='static/logos/')
     skill_name = models.CharField(max_length=200)
 
     def __str__(self):

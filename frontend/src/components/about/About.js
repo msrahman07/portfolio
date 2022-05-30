@@ -1,17 +1,17 @@
 import React from "react";
-import about from "./about.css";
+import "./about.css";
 import propic from "./propic.jpg";
 const About = () => {
   return (
     <section id="about" className="sec container">
       <div className="jumbotron">
         <div className="details">
-          <img className="img-fluid pro-photo" src={propic} />
+          <img className="img-fluid pro-photo" alt="profile" src={propic} />
           <div className="about">
             <h3 className="display-7">Md Shahriar Rahman</h3>
             <div className="degree">Bsc, Computing Science</div>
             <div className="school">
-              <a href="https://sfu.ca" target="_blank">
+              <a href="https://sfu.ca" target="_blank" rel="noreferrer">
                 Simon Fraser University
               </a>
             </div>
@@ -24,6 +24,7 @@ const About = () => {
             href="https://github.com/msrahman07"
             className="github"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fa-brands fa-github"></i>
           </a>
@@ -31,6 +32,7 @@ const About = () => {
             href="https://www.facebook.com/mdshahriar.rahmansakib/"
             className="facebook"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fa-brands fa-facebook"></i>
           </a>
@@ -38,6 +40,7 @@ const About = () => {
             href="https://www.linkedin.com/in/msrahman07/"
             className="linkedin"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fa-brands fa-linkedin"></i>
           </a>

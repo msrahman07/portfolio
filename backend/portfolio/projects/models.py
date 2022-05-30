@@ -4,7 +4,7 @@ from django.db import models
 
 class Projects(models.Model):
     number = models.IntegerField(default=1)
-    image = models.ImageField(upload_to ='static/images/')
+    image = models.ImageField(upload_to ='images/')
     project_name = models.CharField(max_length=200)
     demo_link = models.URLField(max_length=300, default='', blank=True)
     github_url = models.URLField(max_length=300, default='', blank=True)

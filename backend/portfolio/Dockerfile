@@ -8,8 +8,14 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /portfolio
 
-COPY requirements.txt /portfolio/
+RUN pip install --upgrade pip
+
+RUN pip install --upgrade pip wheel
+
+RUN pip install backports.zoneinfo
+
+COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY . /portfolio/
+COPY . .

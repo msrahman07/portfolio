@@ -15,6 +15,6 @@ from .routers import router
 
 urlpatterns = [
     path('', include((router.urls, 'portfolio'), namespace='portfolio')),
-]
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

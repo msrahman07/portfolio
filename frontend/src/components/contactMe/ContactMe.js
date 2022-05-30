@@ -158,6 +158,7 @@ export default function ContactMe() {
           href="https://github.com/msrahman07"
           className="github"
           target="_blank"
+          rel="noreferrer"
         >
           <i className="fa-brands fa-github"></i>
         </a>
@@ -165,6 +166,7 @@ export default function ContactMe() {
           href="https://www.facebook.com/mdshahriar.rahmansakib/"
           className="facebook"
           target="_blank"
+          rel="noreferrer"
         >
           <i className="fa-brands fa-facebook"></i>
         </a>
@@ -172,6 +174,7 @@ export default function ContactMe() {
           href="https://www.linkedin.com/in/msrahman07/"
           className="linkedin"
           target="_blank"
+          rel="noreferrer"
         >
           <i className="fa-brands fa-linkedin"></i>
         </a>

@@ -5,11 +5,7 @@ import { useContext } from "react";
 import ProjectModal from "../../context/proj-modal-ctx.js";
 
 const SpecificProject = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const ctx = useContext(ProjectModal);
-  const [projectTasks, setprojectTasks] = React.useState([]);
   let tasks = [];
   if (props.currProj_tasks) {
     tasks = props.currProj_tasks.split("\n");

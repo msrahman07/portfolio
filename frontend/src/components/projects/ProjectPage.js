@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./projects.css";
-import $ from "jquery";
 import OtherNavbar from "../navbar/OtherNav";
 
 const ProjectPage = (props) => {
@@ -48,14 +47,14 @@ const ProjectPage = (props) => {
               <h5>{project["project_name"]}</h5>
               {project["github_url"] !== "" && (
                 <span className="project-links">
-                  <a href={project["github_url"]} target="_blank">
+                  <a href={project["github_url"]} target="_blank" rel="noreferrer">
                     github
                   </a>
                 </span>
               )}
               {project["demo_link"] !== "" && (
                 <span>
-                  <a href={project["demo_link"]} target="_blank">
+                  <a href={project["demo_link"]} target="_blank" rel="noreferrer">
                     demo
                   </a>
                 </span>

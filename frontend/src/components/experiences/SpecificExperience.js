@@ -6,11 +6,7 @@ import "./experiences.css";
 import ExperienceModal from "../../context/exp-modal-ctx.js";
 
 const SpecificExperience = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const ctx = useContext(ExperienceModal);
-  const [experienceTasks, setexperienceTasks] = React.useState([]);
   let tasks = [];
   if (props.currExp_tasks) {
     tasks = props.currExp_tasks.split("\n");

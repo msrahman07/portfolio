@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./experiences.css";
-import $ from "jquery";
 import OtherNavbar from "../navbar/OtherNav";
 
 const ExperiencePage = (props) => {

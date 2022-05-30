@@ -1,10 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./specExp.css";
 import "./experiences.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faarrowright } from "@fortawesome/free-solid-svg-icons";
 // import imges from "./img.jpg";
-import $ from "jquery";
 import axios from "axios";
 import ExperienceModal from "../../context/exp-modal-ctx.js";
 import SpecificExperience from "./SpecificExperience.js";
@@ -15,7 +12,6 @@ export default function Experiences() {
   const scrl = useRef();
   const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
   const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
-  const [isLoading, setisLoading] = useState(true); // For detecting end of scrolling
   const [modal, setModal] = useState(false); // For detecting
   const [currentExp, setCurrentExp] = useState({}); // For detecting
   useEffect(() => {
@@ -68,7 +64,7 @@ export default function Experiences() {
   }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
 
   const sliceText = (txt) => {
-    if (txt.length > 80) {
+    if (txt !== undefined && txt.length > 80) {
       return txt.slice(0, 80) + ".....";
     } else {
       return txt;
@@ -94,7 +90,7 @@ export default function Experiences() {
         modalClose: closeModal,
       }}
     >
-      {modal == true && (
+      {modal === true && (
         <SpecificExperience
           currExp_postion={currentExp["position"]}
           currExp_company={currentExp["company"]}
@@ -124,7 +120,7 @@ export default function Experiences() {
             ref={scrl}
             onScroll={scrollCheck}
           >
-            {experiences.length !== 0 &&
+            {(experiences !== undefined && experiences.length !== 0) &&
               experiences.map((experience) => (
                 <div
                   onClick={() => onClickHandler(experience)}

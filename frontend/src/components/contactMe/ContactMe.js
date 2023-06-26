@@ -1,18 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./contactMe.css";
 import validator from "validator";
-import axios from "axios";
-import $ from "jquery";
+import emailjs from "@emailjs/browser";
+import api from "../api";
 
 export default function ContactMe() {
-  const inputEmail = useRef("");
-  const inputName = useRef("");
-  const inputCompany = useRef("");
-  const inputMessage = useRef("");
-  const successMsg = useRef("");
+  const form = useRef();
   const [emailValue, setEmailValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [btnDisable, setBtnDisable] = useState(true);
+  const inputMessage = useRef("");
+  const successMsg = useRef("");
 
   useEffect(() => {
     inputMessage.current.value = "Let's have coffee!";
@@ -23,7 +21,7 @@ export default function ContactMe() {
   };
   const checkName = (e) => {
     setNameValue(e.target.value);
-    console.log(successMsg);
+    // console.log(successMsg);
   };
   useEffect(() => {
     successMsg.current.hidden = true;
@@ -37,57 +35,41 @@ export default function ContactMe() {
     }
   }, [emailValue, nameValue]);
 
-  const CSRFToken = (name) => {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      var cookies = document.cookie.split(";");
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = $.trim(cookies[i]);
-        if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  };
   const submitForm = (e) => {
+    // console.log(form.current["inputName"].value);
     e.preventDefault();
-    var csrf = CSRFToken("csrftoken");
-    axios
-      .post(
-        "/contactme/",
-        {
-          name: nameValue,
-          company: inputCompany.current.value,
-          email: emailValue,
-          message: inputMessage.current.value,
-        },
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "X-CSRFToken": csrf,
-          },
-        }
+    var templateParams = {
+      from_name: form.current["inputName"].value,
+      from_email: form.current["inputEmail"].value,
+      company: form.current["inputCompany"].value,
+      message: form.current["inputMessage"].value
+    }
+    // console.log(templateParams);
+    emailjs
+      .send(
+        api.EMAIL_SERVICE_ID,
+        api.EMAIL_TEMPLATE_ID,
+        templateParams,
+        api.EMAIL_PUBLIC_KEY
       )
-      .then(function (response) {
-        console.log(successMsg);
-        successMsg.current.hidden = false;
-        inputName.current.value = "";
-        inputEmail.current.value = "";
-        inputCompany.current.value = "";
-        inputMessage.current.value = "Let's have coffee!";
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .then(
+        (result) => {
+          successMsg.current.hidden = false;
+          e.target.reset();
+          inputMessage.current.value = "Let's have coffee!";
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
   return (
     <div className="sec container">
-      <h4 id="contact" className="display-7">Contact me</h4>
+      <h4 id="contact" className="display-7">
+        Contact me
+      </h4>
       <hr className="hr" />
-      <form className="form" onSubmit={submitForm}>
+      <form ref={form} className="form" onSubmit={submitForm}>
         <div
           ref={successMsg}
           className="alert alert-success"
@@ -101,18 +83,16 @@ export default function ContactMe() {
             Name <span className="star">*</span>
           </label>
           <input
-            ref={inputName}
             onChange={checkName}
             type="text"
             className="form-control"
             id="inputName"
-            placeholder="Enter name"
+            placeholder="Enter your name"
           />
         </div>
         <div className="form-group">
           <label htmlFor="inputCompany">Company</label>
           <input
-            ref={inputCompany}
             type="text"
             className="form-control"
             id="inputCompany"
@@ -125,7 +105,6 @@ export default function ContactMe() {
           </label>
           <input
             onChange={checkEmail}
-            ref={inputEmail}
             type="email"
             className="form-control"
             id="inputEmail"

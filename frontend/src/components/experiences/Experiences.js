@@ -5,7 +5,7 @@ import "./experiences.css";
 import axios from "axios";
 import ExperienceModal from "../../context/exp-modal-ctx.js";
 import SpecificExperience from "./SpecificExperience.js";
-import {Link} from "react-router-dom";
+import api from "../api";
 export default function Experiences() {
   // const []
   const [experiences, setExperiences] = useState([]);
@@ -16,9 +16,9 @@ export default function Experiences() {
   const [currentExp, setCurrentExp] = useState({}); // For detecting
   useEffect(() => {
     axios
-      .get("/experiences")
+      .get(api.EXPERIENCE_URL)
       .then((res) => {
-        setExperiences([...res.data]);
+        setExperiences([...res.data['result']]);
       })
       .catch((err) => {
         console.log(err);
@@ -102,9 +102,9 @@ export default function Experiences() {
           <h4 id="experiences" className="display-7">
             Experiences
           </h4>
-          <p className="exp-link">
+          {/* <p className="exp-link">
             <Link to="/experiences">See all</Link>
-          </p>
+          </p> */}
         </header>
 
         <hr className="hr" />
@@ -124,7 +124,7 @@ export default function Experiences() {
               experiences.map((experience) => (
                 <div
                   onClick={() => onClickHandler(experience)}
-                  key={experience["id"]}
+                  key={experience["_id"]}
                   className="experience"
                 >
                   <header className="exp-header">

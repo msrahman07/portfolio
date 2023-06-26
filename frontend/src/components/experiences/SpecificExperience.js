@@ -9,13 +9,13 @@ const SpecificExperience = (props) => {
   const ctx = useContext(ExperienceModal);
   let tasks = [];
   if (props.currExp_tasks) {
-    tasks = props.currExp_tasks.split("\n");
+    tasks = props.currExp_tasks;
     // setprojectTasks([[], ...tasks]);
     // console.log(tasks);
   }
   return (
     <div>
-      {console.log(tasks)}
+      {/* {console.log(tasks)} */}
       <Modal
         sx={{ opacity: 1, margin: 'auto', maxWidth:'500px' }}
         open={ctx.modalOpen}
@@ -36,7 +36,7 @@ const SpecificExperience = (props) => {
             </div>
             <ul>
                 {tasks.map((task) => (
-                  <li>{task}</li>
+                  <li key={task}>{task}</li>
                 ))}
               </ul>
           </div>

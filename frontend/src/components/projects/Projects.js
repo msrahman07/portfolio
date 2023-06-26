@@ -5,7 +5,7 @@ import SpecificProject from "./SpecificProject.js";
 import axios from "axios";
 import "./specProj.css";
 import ProjectModal from "../../context/proj-modal-ctx.js";
-import { Link } from "react-router-dom";
+import api from "../api"
 
 const Projects = React.memo(() => {
   const scrl = useRef();
@@ -56,10 +56,10 @@ const Projects = React.memo(() => {
 
   useEffect(() => {
     axios
-      .get("projects/")
+      .get(api.PROJECT_URL)
       .then((res) => {
-        setProjects((prev) => [...res.data]);
-        // console.log(projects[0]);
+        // console.log(res.data['result'][0]['tasks']);
+        setProjects((prev) => [...res.data['result']]);
         setisLoading(false);
       })
       .catch((err) => {
@@ -99,9 +99,10 @@ const Projects = React.memo(() => {
       <div>
         {modal === true && (
           <SpecificProject
-            currProj_name={currentProject["project_name"]}
+            currProj_name={currentProject["name"]}
             currProj_tectstack={currentProject["tech_stack"]}
             currProj_tasks={currentProject["tasks"]}
+            currProj_image={currentProject['image']['asset']['url']}
           />
         )}
         {/* cannot pass object, break it down */}
@@ -110,9 +111,9 @@ const Projects = React.memo(() => {
             <h4 id="projects" className="display-7">
               Projects
             </h4>
-            <p className="proj-link">
+            {/* <p className="proj-link">
               <Link to="/projects">See all</Link>
-            </p>
+            </p> */}
           </header>
 
           <hr className="hr" />
@@ -129,21 +130,21 @@ const Projects = React.memo(() => {
             >
               {(projects.length !== 0 && projects !== undefined) && projects.map((project) => (
                   <div
-                    key={project["id"]}
+                    key={project["_id"]}
                     onClick={() => onclickEvent(project)}
                     className="project"
                   >
                     <div>
                       <img
                         className="project-pic"
-                        src={project["image"]}
+                        src={project['image']['asset']['url']}
                         alt="project"
                       />
                       <h5>{project["project_name"]}</h5>
-                      {project["github_url"] !== "" && (
+                      {project["github"] !== "" && (
                         <span className="project-links">
                           <a
-                            href={project["github_url"]}
+                            href={project["github"]}
                             target="_blank"
                             rel="noreferrer"
                           >
@@ -151,7 +152,7 @@ const Projects = React.memo(() => {
                           </a>
                         </span>
                       )}
-                      {project["demo_link"] !== "" && (
+                      {/* {project["demo_link"] !== "" && (
                         <span>
                           <a
                             href={project["demo_link"]}
@@ -161,7 +162,7 @@ const Projects = React.memo(() => {
                             demo
                           </a>
                         </span>
-                      )}
+                      )} */}
                       <div className="texts">
                         {project["details"] !== "" &&
                           sliceText(project["details"])}
